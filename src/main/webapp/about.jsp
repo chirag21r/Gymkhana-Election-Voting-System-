@@ -24,6 +24,15 @@
 
 <h1>About</h1>
 
+<p>
+  This project was made by <b>Chirag Shukla</b> for <b>IIIT Kalyani Gymkhana Elections</b>
+  for the voting of several posts.
+  
+  <br><br>
+  <a href="https://github.com/chirag21r/Gymkhana-Election-Voting-System-" target="_blank" rel="noopener">
+    Click here to see code files (GitHub Repo)
+  </a>
+</p>
 
 </div>
 </div>
