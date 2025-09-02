@@ -46,7 +46,38 @@ CandidateDAO dao = new CandidateDAO(DBConnect.getConn());
 List<Candidate> list = dao.getCandidates();
 int total = 0; for(Candidate c : list){ total += c.getVotes(); }
 
+// Build top-1 per post using a simple map
+java.util.Map<String, Candidate> topByPost = new java.util.HashMap<String, Candidate>();
+for (Candidate c : list) {
+    String post = c.getPost();
+    if(post == null) post = "";
+    Candidate cur = topByPost.get(post);
+    if (cur == null || c.getVotes() > cur.getVotes()) {
+        topByPost.put(post, c);
+    }
+}
+
 %>
+<h2>Category Leaders</h2>
+<table class="votes-table">
+  <tr>
+    <th>Post</th>
+    <th>Leader</th>
+    <th>Votes</th>
+  </tr>
+  <%
+    for (java.util.Map.Entry<String, Candidate> e : topByPost.entrySet()) {
+      Candidate leader = e.getValue();
+  %>
+  <tr>
+    <td><%= e.getKey() == null || e.getKey().isEmpty() ? "(Unspecified)" : e.getKey() %></td>
+    <td><b><%= leader.getCandidate() %></b></td>
+    <td><%= leader.getVotes() %></td>
+  </tr>
+  <% } %>
+</table>
+
+<h2>All Candidates</h2>
 <table class="votes-table">
   <tr>
     <th>#</th>

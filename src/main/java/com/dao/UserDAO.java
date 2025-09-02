@@ -8,6 +8,7 @@ import java.util.List;
 
 import com.conn.DBConnect;
 import com.entity.User;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 public class UserDAO {
@@ -147,17 +148,22 @@ private Connection conn;
 					
 					
 						try{
-							String sql = "select * from User  where (email=? or regNo=?) and password=?";
+							String sql = "select * from User  where (email=? or regNo=?)";
 							PreparedStatement ps = conn.prepareStatement(sql);
 						
 						
 						ps.setString(1, vtr.getEmail());
 						ps.setString(2, vtr.getEmail());
-						ps.setString(3, vtr.getPassword());
 						
 						ResultSet rs=ps.executeQuery();
-						if (rs.next()==true)
-							f = true;
+						if (rs.next()==true){
+							String stored = rs.getString("password");
+							if (stored != null && (BCrypt.checkpw(vtr.getPassword(), stored) || stored.equals(vtr.getPassword()))) {
+								f = true;
+							} else {
+								f = false;
+							}
+						}
 						else
 							f = false;
 						
@@ -236,7 +242,6 @@ private Connection conn;
 						}
 					
 				
-					
 					
 					
 					

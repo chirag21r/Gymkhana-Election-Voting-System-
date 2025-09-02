@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.conn.DBConnect;
 import com.dao.UserDAO;
 import com.entity.User;
-
+import org.mindrot.jbcrypt.BCrypt;
 
 
 
@@ -44,6 +44,7 @@ public class addUser extends HttpServlet {
 		
 		String password = new String(request.getParameter("password"));
 		password = password.trim();
+		String hashed = BCrypt.hashpw(password, BCrypt.gensalt(10));
 		
 		String email = new String(request.getParameter("email"));
 		email = email.trim();
@@ -54,7 +55,7 @@ public class addUser extends HttpServlet {
 		
 		User vtr = new User();
 		vtr.setName(name);
-		vtr.setPassword(password);
+		vtr.setPassword(hashed);
 		vtr.setEmail(email);
 		vtr.setPhone(phone);
 		vtr.setRegNo(regno);
@@ -100,7 +101,7 @@ public class addUser extends HttpServlet {
 
 	
 			
-	
+		
 				
 			
 			
