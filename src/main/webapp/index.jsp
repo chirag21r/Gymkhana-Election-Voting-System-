@@ -7,6 +7,7 @@
 <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1">
 <title>Home</title>
 <link rel="stylesheet" href = "css/style.css">
+<link rel="icon" href="image/user.png" type="image/png">
 
 
 

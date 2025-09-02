@@ -7,6 +7,7 @@
 <title>Voter Registration</title>
 
 <link rel="stylesheet" href = "css/style.css">
+<link rel="icon" href="image/user.png" type="image/png">
 <%@ include file = "msgcookie.jsp" %>
 
 </head>

@@ -14,6 +14,7 @@
 <title>Voter Login</title>
 <link rel="stylesheet" href = "css/bootstrap.css">
 <link rel="stylesheet" href = "css/style.css">
+<link rel="icon" href="image/user.png" type="image/png">
 
 <link rel="stylesheet" href = "css/table.css">
 

@@ -11,6 +11,7 @@
 <meta charset="UTF-8">
 <title>Admin Dashboard - IIIT Kalyani Gymkhana 2024</title>
 <link rel="stylesheet" href = "css/style.css">
+<link rel="icon" href="image/user.png" type="image/png">
 
 </head>
 <body>
