@@ -46,14 +46,21 @@ CandidateDAO dao = new CandidateDAO(DBConnect.getConn());
 List<Candidate> list = dao.getCandidates();
 int total = 0; for(Candidate c : list){ total += c.getVotes(); }
 
-// Build top-1 per post using a simple map
-java.util.Map<String, Candidate> topByPost = new java.util.HashMap<String, Candidate>();
+// Build joint leaders (all candidates tied for 1st) per post
+java.util.Map<String, Integer> maxByPost = new java.util.HashMap<String, Integer>();
+java.util.Map<String, java.util.List<Candidate>> leadersByPost = new java.util.HashMap<String, java.util.List<Candidate>>();
 for (Candidate c : list) {
     String post = c.getPost();
     if(post == null) post = "";
-    Candidate cur = topByPost.get(post);
-    if (cur == null || c.getVotes() > cur.getVotes()) {
-        topByPost.put(post, c);
+    Integer curMax = maxByPost.get(post);
+    int v = c.getVotes();
+    if (curMax == null || v > curMax) {
+        maxByPost.put(post, v);
+        java.util.List<Candidate> l = new java.util.ArrayList<Candidate>();
+        l.add(c);
+        leadersByPost.put(post, l);
+    } else if (v == curMax) {
+        leadersByPost.get(post).add(c);
     }
 }
 
@@ -66,13 +73,20 @@ for (Candidate c : list) {
     <th>Votes</th>
   </tr>
   <%
-    for (java.util.Map.Entry<String, Candidate> e : topByPost.entrySet()) {
-      Candidate leader = e.getValue();
+    for (java.util.Map.Entry<String, java.util.List<Candidate>> e : leadersByPost.entrySet()) {
+      String post = e.getKey();
+      java.util.List<Candidate> leaders = e.getValue();
+      int mv = maxByPost.get(post);
+      StringBuilder names = new StringBuilder();
+      for (int i = 0; i < leaders.size(); i++) {
+        if (i > 0) names.append(", ");
+        names.append(leaders.get(i).getCandidate());
+      }
   %>
   <tr>
-    <td><%= e.getKey() == null || e.getKey().isEmpty() ? "(Unspecified)" : e.getKey() %></td>
-    <td><b><%= leader.getCandidate() %></b></td>
-    <td><%= leader.getVotes() %></td>
+    <td><%= (post == null || post.isEmpty()) ? "(Unspecified)" : post %></td>
+    <td><b><%= names.toString() %></b></td>
+    <td><%= mv %></td>
   </tr>
   <% } %>
 </table>
