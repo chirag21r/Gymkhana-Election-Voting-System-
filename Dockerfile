@@ -10,9 +10,13 @@ RUN rm -rf /usr/local/tomcat/webapps/*
 # Deploy our WAR as ROOT.war
 COPY --from=build /app/target/B7iii_VotingApp_MavenProject_Final.war /usr/local/tomcat/webapps/ROOT.war
 EXPOSE 8080
-ENV DB_URL="jdbc:mysql://localhost:3306/votingappj2ee"
+# ENV DB_URL="jdbc:mysql://localhost:3306/votingappj2ee"
+# ENV DB_USER="root"
+# ENV DB_PASS="212004@ChiragShukla"
+# Env for DB
+ENV DB_URL="jdbc:mysql://mysql.railway.internal:3306/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC"
 ENV DB_USER="root"
-ENV DB_PASS="212004@ChiragShukla"
+ENV DB_PASS="SnFIeyTGihLVlamnNXBPvnjwTiphFTPB"
 CMD ["catalina.sh","run"]
 
 # # Build stage
