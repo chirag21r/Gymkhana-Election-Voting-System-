@@ -16,5 +16,5 @@ services:
         sync: false
       - key: PORT
         value: "8080"
-    healthCheckPath: /B7iii_VotingApp_MavenProject_Final/
+    healthCheckPath: /keepalive
     autoDeploy: true
