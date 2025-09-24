@@ -5,12 +5,13 @@ import java.io.PrintWriter;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+// import javax.servlet.annotation.WebServlet; // Commented out since @WebServlet is disabled
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/keepalive")
+// COMMENTED OUT - KeepAlive functionality disabled to avoid hitting Render every 5 minutes
+// @WebServlet("/keepalive")
 public class KeepAliveServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
