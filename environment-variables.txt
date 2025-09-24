@@ -1,0 +1,20 @@
+# IIIT Kalyani Gymkhana Voting System - Environment Variables for Render
+# Set these in your Render dashboard under Environment Variables
+
+# PostgreSQL Database Configuration
+DB_URL=jdbc:postgresql://ep-raspy-dream-adohxgvs-pooler.c-2.us-east-1.aws.neon.tech:5432/votingappj2ee?sslmode=require&channel_binding=require
+DB_USER=neondb_owner
+DB_PASS=npg_GtmIJp9VjD8A
+
+# Server Configuration (Render will set this automatically)
+PORT=8080
+
+# Instructions:
+# 1. Go to your Render dashboard
+# 2. Select your service
+# 3. Go to Environment tab
+# 4. Add these variables:
+#    - DB_URL: (copy the value above)
+#    - DB_USER: (copy the value above)
+#    - DB_PASS: (copy the value above)
+# 5. Save and redeploy

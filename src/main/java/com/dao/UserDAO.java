@@ -31,7 +31,7 @@ private Connection conn;
 			
 			
 				try{
-					String sql = "select * from User  where email=? and password=? and role='ROLE_ADMIN'";
+					String sql = "select * from \"User\" where email=? and password=? and role='ROLE_ADMIN'";
 					PreparedStatement ps = conn.prepareStatement(sql);
 				
 				
@@ -60,7 +60,7 @@ private Connection conn;
 				
 				
 				try {
-					String sql = "select * from User where email = ? or regNo = ?";
+					String sql = "select * from \"User\" where email = ? or regno = ?";
 					PreparedStatement ps = conn.prepareStatement(sql);
 					
 					ps.setString(1, emailOrReg);
@@ -77,7 +77,7 @@ private Connection conn;
 						user.setPhone(String.valueOf(rs.getLong(5)));
 						user.setStatus(rs.getString(6));
 						user.setRole(rs.getString(7));
-						try { user.setRegNo(rs.getString("regNo")); } catch(Exception ignore) {}
+						try { user.setRegNo(rs.getString("regno")); } catch(Exception ignore) {}
 						
 						
 						
@@ -95,7 +95,7 @@ private Connection conn;
 			// helper: fetch email for identifier (email or regNo)
 			public String getEmailByIdentifier(String identifier) {
 				try {
-					String sql = "select email from User where email=? or regNo=?";
+					String sql = "select email from \"User\" where email=? or regno=?";
 					PreparedStatement ps = conn.prepareStatement(sql);
 					ps.setString(1, identifier);
 					ps.setString(2, identifier);
@@ -111,7 +111,7 @@ private Connection conn;
 				
 				int i = 0;
 				try{
-					String sql = "insert into User (email,name,password,phone,status,role,regNo) values(?,?,?,?,?,?,?)" ;
+					String sql = "insert into \"User\" (email,name,password,phone,status,role,regno) values(?,?,?,?,?,?,?)" ;
 					PreparedStatement ps = conn.prepareStatement(sql);
 				
 				
@@ -148,7 +148,7 @@ private Connection conn;
 					
 					
 						try{
-							String sql = "select * from User  where (email=? or regNo=?)";
+							String sql = "select * from \"User\" where (email=? or regno=?)";
 							PreparedStatement ps = conn.prepareStatement(sql);
 						
 						
@@ -185,7 +185,7 @@ private Connection conn;
 					
 					
 						try{
-							String sql = "select * from User  where email=? or regNo=?";
+							String sql = "select * from \"User\" where email=? or regno=?";
 							PreparedStatement ps = conn.prepareStatement(sql);
 						
 						
@@ -218,7 +218,7 @@ private Connection conn;
 							try {
 							
 								
-								String sql = "update User set status='Voted' where email=?";
+								String sql = "update \"User\" set status='Voted' where email=?";
 								PreparedStatement ps= conn.prepareStatement(sql);
 								
 							

@@ -31,7 +31,7 @@ private Connection conn;
 		Candidate cnd = new Candidate();
 		
 		try {
-			String sql = "select * from Candidate";
+			String sql = "select * from \"Candidate\"";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			
@@ -71,7 +71,7 @@ private Connection conn;
 					try {
 					
 						
-						String sql = "update Candidate set votes=(votes + 1) where candidate=?";
+						String sql = "update \"Candidate\" set votes=(votes + 1) where candidate=?";
 						PreparedStatement ps= conn.prepareStatement(sql);
 						
 
@@ -98,7 +98,7 @@ private Connection conn;
 			public int updateCandidate(int id, String name, String post) {
 				int updated = 0;
 				try {
-					String sql = "update Candidate set candidate=?, post=? where id=?";
+					String sql = "update \"Candidate\" set candidate=?, post=? where id=?";
 					PreparedStatement ps = conn.prepareStatement(sql);
 					ps.setString(1, name);
 					ps.setString(2, post);
