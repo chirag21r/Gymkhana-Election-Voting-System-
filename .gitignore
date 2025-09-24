@@ -63,7 +63,6 @@ build-for-render.sh
 deploy.sh
 
 # IDE and editor files
-.vscode/
 .idea/
 *.swp
 *.swo
