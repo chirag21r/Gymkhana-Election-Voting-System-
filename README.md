@@ -1,17 +1,24 @@
-# Gymkhana-Election-Voting-System-
+# Gymkhana-Election-Voting-System
 
-Visit the Website Live at : https://voting-app-ekks.onrender.com
+Visit the Website Live at: https://voting-app-ekks.onrender.com
+
 Built for IIIT Kalyani Gymkhana elections. Frontend: HTML/CSS (simple, clean). Backend: JSP/Servlets, MySQL, Tomcat, Maven.
 
-Author: Chirag Shukla (2024)
+**Author:** Chirag Shukla (2024)
+
+---
 
 ## Prerequisites
+
 - JDK 8+
 - Maven
 - MySQL 8+
 - Apache Tomcat 8.5/9
 
+---
+
 ## Setup (MySQL)
+
 ```sql
 CREATE DATABASE IF NOT EXISTS votingappj2ee;
 USE votingappj2ee;
@@ -39,26 +46,38 @@ VALUES ('admin','Administrator','admin',9999999999,'Not Voted','ROLE_ADMIN')
 ON DUPLICATE KEY UPDATE email=email;
 ```
 
+---
+
 ## Build
+
 ```bash
 cd B7iii_VotingApp_MavenProject_Final
 mvn -DskipTests package
 ```
+
 WAR will be at `target/B7iii_VotingApp_MavenProject_Final.war`.
 
+---
+
 ## Run (Tomcat)
+
 ```bash
 sudo cp target/B7iii_VotingApp_MavenProject_Final.war /var/lib/tomcat9/webapps/
 sudo systemctl restart tomcat9
 ```
+
 Open: `http://localhost:8080/B7iii_VotingApp_MavenProject_Final/`
 
+---
+
 ## Login
+
 - Admin: email `admin`, password `admin`
 - Users can login with email OR registration number + password
 
+---
+
 ## Notes
+
 - DB credentials are configured in `src/main/java/com/conn/DBConnect.java`.
 - Candidate names and posts can be edited in admin panel.
-
-
